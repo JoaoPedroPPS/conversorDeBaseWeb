@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Conversor de Bases Numéricas</title>
+</head>
+<body>
+	<h1>Conversor de Bases Numéricas</h1>
+	<form>
+		<label for="numero">Digite o número:</label>
+		<input type="text" id="numero" name="numero">
+		
+		<label for="base">Base do número:</label>
+		<select id="base" name="base">
+			<option value="10">Decimal</option>
+			<option value="16">Hexadecimal</option>
+			<option value="8">Octal</option>
+		</select>
+		
+		<label for="base_convertida">Base do número convertido:</label>
+		<select id="base_convertida" name="base_convertida">
+			<option value="10">Decimal</option>
+			<option value="16">Hexadecimal</option>
+			<option value="8">Octal</option>
+		</select>
+		
+		<input type="button" value="Converter" onclick="converter()">
+	</form>
+	
+	<p id="resultado"></p>
+	
+	<script>
+		function converter() {
+			var numero = document.getElementById("numero").value;
+			var base = document.getElementById("base").value;
+			var base_convertida = document.getElementById("base_convertida").value;
+			var resultado = "";
+			
+			if (base == 10) {
+				if (base_convertida == 16) {
+					resultado = Number(numero).toString(16);
+				} else if (base_convertida == 8) {
+					resultado = Number(numero).toString(8);
+				} else {
+					resultado = numero;
+				}
+			} else if (base == 16) {
+				if (base_convertida == 10) {
+					resultado = parseInt(numero, 16).toString(10);
+				} else if (base_convertida == 8) {
+					resultado = parseInt(numero, 16).toString(8);
+				} else {
+					resultado = numero;
+				}
+			} else if (base == 8) {
+				if (base_convertida == 10) {
+					resultado = parseInt(numero, 8).toString(10);
+				} else if (base_convertida == 16) {
+					resultado = parseInt(numero, 8).toString(16);
+				} else {
+					resultado = numero;
+				}
+			}
+			
+			document.getElementById("resultado").innerHTML = "Resultado: " + resultado;
+		}
+	</script>
+</body>
+</html>
